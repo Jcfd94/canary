@@ -84,7 +84,7 @@ jobs:
         uses: lukka/get-cmake@main
 
       - name: Setup CCache
-        uses: hendrikmuhs/ccache-action@v2
+        uses: hendrikmuhs/ccache-action@main
         with:
           key: ccache-${{ matrix.os }}-${{ matrix.buildtype }}
 

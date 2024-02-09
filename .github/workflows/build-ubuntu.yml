@@ -90,7 +90,7 @@ jobs:
 
       - name: Configure CMake Project
         run: |
-          cmake -B build -G Ninja \
+          cmake -B build -S . -G Ninja \
           -DCMAKE_BUILD_TYPE=${{ matrix.buildtype }} \
           -DCMAKE_TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake \
           -DCMAKE_EXPORT_COMPILE_COMMANDS=ON \
@@ -98,7 +98,7 @@ jobs:
 
       - name: Build Project
         run: |
-          cmake --build build --parallel ${{ env.CMAKE_BUILD_PARALLEL_LEVEL }}
+          cmake --build build
 
       - name: Create and Upload Artifact
         uses: actions/upload-artifact@main

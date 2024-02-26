@@ -1,10 +1,17 @@
 local lever = Action()
+local fields = { 105, 2118, 2119, 2120, 2121, 2122, 2123, 2124, 2125, 2126, 2132, 2133, 2134, 2135, 21465, 2128, 2130}
 
 function lever.onUse(player, item, fromPosition, target, toPosition, isHotkey)
 	-- First lever to open the ladder
 	if item.uid == 30004 then
 		local laddertile = Tile({ x = 32225, y = 32276, z = 8 })
+		local below = Position{x = 32225, y = 32276, z = 9}
 		if item.itemid == 2772 then
+					laddertile:relocateTo(below)
+					local FD = stairPosition:getItemByType(ITEM_TYPE_MAGICFIELD)
+					if FD and table.contains(fields, FD:getId()) then
+					FD:remove()	
+					end
 			laddertile:getItemById(351):transform(7767)
 			item:transform(2773)
 		else
